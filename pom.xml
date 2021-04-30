@@ -19,11 +19,12 @@
 	<properties>
 		<java.version>11</java.version>
 		<spring-cloud-kubernetes.version>2.0.2</spring-cloud-kubernetes.version>
+		<jib-maven-plugin.version>3.0.0</jib-maven-plugin.version>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
 		<dependency>
@@ -52,6 +53,16 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>${jib-maven-plugin.version}</version>
+				<configuration>
+					<to>
+						<image>localhost:5000/${project.groupId}/${project.artifactId}:${project.version}</image>
+					</to>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
