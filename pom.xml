@@ -12,14 +12,32 @@
 	<artifactId>spring-cloud-kubernetes-issue-with-target-class-proxies</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-cloud-kubernetes-issue-with-target-class-proxies</name>
-	<description>Demo project for Spring Boot</description>
+	<description><![CDATA[
+		Sample project demonstrating issue with Spring Cloud Kubernetes Config and Target Class Proxies
+		when running in Kubernetes
+	]]></description>
 	<properties>
 		<java.version>11</java.version>
+		<spring-cloud-kubernetes.version>2.0.2</spring-cloud-kubernetes.version>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-kubernetes-fabric8-config</artifactId>
+			<version>${spring-cloud-kubernetes.version}</version>
+		</dependency>
+
+		<dependency>
+			<!-- This dependency is required, otherwise JsonProcessException class cannot be found
+			See https://github.com/spring-cloud/spring-cloud-kubernetes/issues/642
+			-->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-json</artifactId>
 		</dependency>
 
 		<dependency>
