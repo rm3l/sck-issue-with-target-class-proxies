@@ -28,3 +28,5 @@ jobs:
       - name: Build
         run: ./mvnw install
 
+      - name: Provision Kubernetes KinD Cluster
+        uses: container-tools/kind-action@v1

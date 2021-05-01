@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "spring-cloud-k8s-issue.fullname" . }}-test-connection"
+  labels:
+    {{- include "spring-cloud-k8s-issue.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['--tries', '60', '-S', '-O', '-', '{{ include "spring-cloud-k8s-issue.fullname" . }}:{{ .Values.service.port }}/test']
+  restartPolicy: Never
