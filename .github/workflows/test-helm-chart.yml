@@ -32,15 +32,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      - name: Build
-        run: ./mvnw --batch-mode install
-
       - name: Provision Kubernetes KinD Cluster and local Container Registry
         uses: container-tools/kind-action@v1
 
-      - name: Package and push container image
+      - name: Build, package and push container image
         run: |
-          ./mvnw --batch-mode package \
+          ./mvnw --batch-mode install \
             jib:build \
             -Djib.to.image=kind-registry:5000/org.rm3l/sck8s-issue-target-class-proxies:latest \
             -Djib.allowInsecureRegistries=true
