@@ -47,7 +47,7 @@ jobs:
 
       - name: Install the Helm Release
         run: |
-          helm install --wait --timeout 300 sck-issue \
+          helm install --wait --timeout 5m sck-issue \
             src/main/kubernetes/helm-chart \
             --set image.repository=kind-registry:5000/org.rm3l/sck8s-issue-target-class-proxies \
             --set image.tag=latest \
