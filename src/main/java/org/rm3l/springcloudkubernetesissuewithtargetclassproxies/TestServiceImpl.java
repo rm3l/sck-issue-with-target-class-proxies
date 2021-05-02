@@ -19,12 +19,16 @@ public class TestServiceImpl extends AbstractTestService implements TestService 
   @EventListener(TestEvent.class)
   @Async
   public void handleEvent(final TestEvent testEvent) {
-    logger.debug("handleEvent({})", testEvent);
+    logger.info("handleEvent({})", testEvent.data);
   }
 
   public static class TestEvent extends ApplicationEvent {
-    public TestEvent(Object source) {
+
+    public final String data;
+
+    public TestEvent(Object source, String data) {
       super(source);
+      this.data = data;
     }
   }
 }
