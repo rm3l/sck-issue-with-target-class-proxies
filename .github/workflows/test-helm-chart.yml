@@ -19,6 +19,11 @@ jobs:
           distribution: 'adopt'
           java-version: '11'
 
+      - name: Set up Helm
+        uses: azure/setup-helm@v1.1
+        with:
+          version: v3.5.3
+
       - name: Cache local Maven repository
         uses: actions/cache@v2
         with:
@@ -30,5 +35,23 @@ jobs:
       - name: Build
         run: ./mvnw install
 
-      - name: Provision Kubernetes KinD Cluster
+      - name: Provision Kubernetes KinD Cluster and local Container Registry
         uses: container-tools/kind-action@v1
+
+      - name: Package and push container image
+        run: |
+          ./mvnw package
+            jib:build
+            -Djib.to.image=kind-registry:5000/org.rm3l/sck8s-issue-target-class-proxies:latest
+            -Djib.allowInsecureRegistries=true
+
+      - name: Install the Helm Release
+        run: |
+          helm install --wait --timeout 300 sck-issue
+            src/main/kubernetes/helm-chart
+            --set image.repository=kind-registry:5000/org.rm3l/sck8s-issue-target-class-proxies
+            --set image.tag=latest
+            --set image.pullPolicy=Always
+
+      - name: Test Helm Release
+        run: helm test sck-issue
