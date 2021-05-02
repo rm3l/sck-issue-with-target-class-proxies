@@ -40,17 +40,17 @@ jobs:
 
       - name: Package and push container image
         run: |
-          ./mvnw package
-            jib:build
-            -Djib.to.image=kind-registry:5000/org.rm3l/sck8s-issue-target-class-proxies:latest
+          ./mvnw package \
+            jib:build \
+            -Djib.to.image=kind-registry:5000/org.rm3l/sck8s-issue-target-class-proxies:latest \
             -Djib.allowInsecureRegistries=true
 
       - name: Install the Helm Release
         run: |
-          helm install --wait --timeout 300 sck-issue
-            src/main/kubernetes/helm-chart
-            --set image.repository=kind-registry:5000/org.rm3l/sck8s-issue-target-class-proxies
-            --set image.tag=latest
+          helm install --wait --timeout 300 sck-issue \
+            src/main/kubernetes/helm-chart \
+            --set image.repository=kind-registry:5000/org.rm3l/sck8s-issue-target-class-proxies \
+            --set image.tag=latest \
             --set image.pullPolicy=Always
 
       - name: Test Helm Release
