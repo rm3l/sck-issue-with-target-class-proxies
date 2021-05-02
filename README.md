@@ -3,7 +3,8 @@
 [![Test Helm Chart](https://github.com/rm3l/sck-issue-with-target-class-proxies/actions/workflows/test-helm-chart.yml/badge.svg)](https://github.com/rm3l/sck-issue-with-target-class-proxies/actions/workflows/test-helm-chart.yml)
 
 ### Link to issue 
-TODO
+
+[spring-cloud/spring-cloud-kubernetes#780](https://github.com/spring-cloud/spring-cloud-kubernetes/issues/780)
 
 ### How to reproduce the issue
 
