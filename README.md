@@ -1,5 +1,7 @@
 > Sample Project demonstrating an issue with Spring Cloud Kubernetes
 
+[![Test Helm Chart](https://github.com/rm3l/sck-issue-with-target-class-proxies/actions/workflows/test-helm-chart.yml/badge.svg)](https://github.com/rm3l/sck-issue-with-target-class-proxies/actions/workflows/test-helm-chart.yml)
+
 ### Link to issue 
 TODO
 
