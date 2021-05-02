@@ -45,20 +45,11 @@ jobs:
             -Djib.to.image=kind-registry:5000/org.rm3l/sck8s-issue-target-class-proxies:latest \
             -Djib.allowInsecureRegistries=true
 
+      - name: Make scripts executable
+        run: chmod +x .github/scripts/*.sh
+
       - name: Install the Helm Release
-        run: |
-          helm install --wait --timeout 3m sck-issue \
-            src/main/kubernetes/helm-chart \
-            --set image.repository=kind-registry:5000/org.rm3l/sck8s-issue-target-class-proxies \
-            --set image.tag=latest \
-            --set image.pullPolicy=Always ; \
-          export retVal=$? ; \
-          kubectl logs $(kubectl get pods -l "app.kubernetes.io/name=spring-cloud-k8s-issue,app.kubernetes.io/instance=sck-issue" -o jsonpath="{.items[0].metadata.name}") ; \
-          exit $retVal
+        run: .github/scripts/install-helm-chart.sh
 
       - name: Test Helm Release
-        run: |
-          helm test sck-issue ; \
-          export retVal=$? ; \
-          kubectl logs sck-issue-spring-cloud-k8s-issue-test-connection ; \
-          exit $retVal
+        run: .github/scripts/test-helm-release.sh
