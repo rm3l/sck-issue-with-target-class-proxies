@@ -24,7 +24,7 @@ export IMAGE_TAG="latest"
 
 ```
 # Deploy the application to your Kubernetes Cluster using the Helm Chart provided
-helm upgrade --install sck-issue \
+helm upgrade --install --wait sck-issue \
     src/main/kubernetes/helm-chart \
     --set image.repository=${IMAGE_REPOSITORY} \
     --set image.tag=${IMAGE_TAG} \
@@ -32,6 +32,6 @@ helm upgrade --install sck-issue \
 ```
 
 ```
-# This test pod will not complete successfully
+# This test pod will not complete successfully because the application won't start
 helm test sck-issue
 ```
