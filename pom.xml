@@ -18,7 +18,7 @@
 	]]></description>
 	<properties>
 		<java.version>11</java.version>
-		<spring-cloud-kubernetes.version>2.0.2</spring-cloud-kubernetes.version>
+		<spring-cloud-kubernetes.version>2.0.3</spring-cloud-kubernetes.version>
 		<jib-maven-plugin.version>3.0.0</jib-maven-plugin.version>
 	</properties>
 	<dependencies>
