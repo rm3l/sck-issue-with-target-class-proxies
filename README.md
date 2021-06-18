@@ -1,4 +1,4 @@
-> Sample Project demonstrating an issue with Spring Cloud Kubernetes
+> Sample project demonstrating an issue with Spring Cloud Kubernetes and the use of subclass-based (CGLIB) proxies
 
 [![Test Helm Chart](https://github.com/rm3l/sck-issue-with-target-class-proxies/actions/workflows/test-helm-chart.yml/badge.svg)](https://github.com/rm3l/sck-issue-with-target-class-proxies/actions/workflows/test-helm-chart.yml)
 
